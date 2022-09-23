@@ -60,13 +60,14 @@ class Login_screen extends StatelessWidget {
                           Padding(
                               padding: EdgeInsets.symmetric(horizontal: 41.w),
                               child: TextFormField(
+                                initialValue: "username",
                               )
                           ),
                           Gap(35.2.h),
                           Padding(
                               padding: EdgeInsets.symmetric(horizontal: 41.w),
                               child: TextFormField(
-
+                                initialValue: "password",
                               )
                           )
                         ],

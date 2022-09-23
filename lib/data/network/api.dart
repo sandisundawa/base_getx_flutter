@@ -26,4 +26,8 @@ class Api {
         {'username': noHp, 'password': password, 'device_token': deviceToken},
         "");
   }
+
+  static Future getGenre() async {
+    return await _handler.getWithoutToken(ApiUrl.genreUrl);
+  }
 }

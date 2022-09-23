@@ -2,9 +2,15 @@ part of 'api.dart';
 
 abstract class ApiHandler {
   Future get(String url, String token);
-  Future post(String url, dynamic body,String token);
+
+  Future getWithoutToken(String url);
+
+  Future post(String url, dynamic body, String token);
+
   Future postUpload(http.MultipartRequest request);
+
   Future put(String url, dynamic body);
+
   Future delete(String url);
 
   factory ApiHandler() => _ApiHandlerImpl();
@@ -26,14 +32,33 @@ class _ApiHandlerImpl implements ApiHandler {
   }
 
   @override
+  Future getWithoutToken(String url) async {
+    try {
+      final response = await http.get(
+          Uri.parse(url).replace(queryParameters: <String, String>{
+            'api_key': '2c35c921410c9727265ed66192629a38'
+          }),
+          headers: {
+            "Accept": "application/json",
+          });
+      print("$url ${response.body}");
+      return _process(response);
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+  }
+
+  @override
   Future post(String url, body, token) async {
     try {
-      final response = await http.post(Uri.parse(url), headers: {
-        "Authorization": "Bearer $token",
-        "Accept": "application/json",
-      },  body: body);
+      final response = await http.post(Uri.parse(url),
+          headers: {
+            "Authorization": "Bearer $token",
+            "Accept": "application/json",
+          },
+          body: body);
       print("$url ${response.body}");
-      print("token :"+token);
+      print("token :" + token);
       return _process(response);
     } on SocketException {
       throw FetchDataException('No Internet connection');
