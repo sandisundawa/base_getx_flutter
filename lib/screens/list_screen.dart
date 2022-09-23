@@ -1,3 +1,4 @@
+import 'package:base_getx_flutter/config/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,14 +12,14 @@ class List_screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('List Users'),
-      ),
-      body: Obx(
-        () {
-          return Container();
-        },
-      ),
+      backgroundColor: ColorValue.backgroundColorLoginScreen,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          SizedBox(height: 20,),
+          Padding(padding: EdgeInsets.only(left: 40, top: 40), child: Text("List"),)
+        ],
+      )
     );
   }
 }
