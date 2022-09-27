@@ -7,7 +7,7 @@ class List_screenController extends GetxController {
 
   final List_screenService _service;
 
-  var listBank = <Genres>[].obs;
+  var listGenre = <Genres>[].obs;
 
   @override
   void onInit() {
@@ -19,8 +19,8 @@ class List_screenController extends GetxController {
     try {
       genreModel? genreResponse = await _service.getGenre();
       if (genreResponse != null) {
-        listBank.value = genreResponse.genres!;
-        print("kesini :"+listBank.value.first.name.toString());
+        listGenre.value = genreResponse.genres!;
+        print("kesini :"+listGenre.value.first.name.toString());
       } else {
         print("kesini");
         // error.checkErrorPopup(StringValue.connectionError);
